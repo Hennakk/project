@@ -1,0 +1,41 @@
+clear;
+clf;
+
+function y=D(x1,x2,y1,y2);
+  y= sqrt((x1-x2)^2 + (y1-y2)^2);
+endfunction
+ 
+ N= 40;
+ Side = 50;
+ S = 10;
+ 
+ for i = 1 : N
+    nodenodeX(i) = rand(1,1)*Side;
+    nodenodeY(i) = rand(1,1)*Side;
+    plot(nodeX(i),nodeY(i),'bo')
+    xnumb(nodeX(i),nodeY(i),i,0);
+ end 
+ a = 1;
+ X(1)=nodeX(i);
+ Y(1)=nodeY(i);
+ 
+ for k = 2 : S
+  for j = a+1 : N
+    cnt=0;
+    for n = 1 :k-1
+      if (D(nodeX(j),X(n),nodeY(j),Y(n))>10)
+        cnt = cnt +1;
+      end
+     end
+     if(cont==k-1)
+        X(k)=nodeX(j);
+        Y(k)=nodeY(j);
+        a=j;
+        break;
+      end
+   end
+ end
+ 
+ for k = 1 : S
+    plot(X(k),Y(k),'r*')
+ end
